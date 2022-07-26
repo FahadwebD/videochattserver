@@ -2,6 +2,7 @@ const express = require("express")
 const http = require("http")
 const app = express()
 const server = http.createServer(app)
+const port = process.env.PORT || 5000;
 const io = require("socket.io")(server, {
 	cors: {
 		origin: `https://${process.env.HIDDENLINK}/`,
@@ -25,10 +26,10 @@ io.on("connection", (socket) => {
 	})
 })
 
-server.get('/', ( req , res)=>{
+app.get('/', ( req , res)=>{
     res.send('srcn connected')
 })
 
-server.listen(port , ()=>{
+app.listen(port , ()=>{
     console.log(`listening at ${port}`)
 })
